@@ -1,17 +1,46 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <button @click="toggleImage">{{ show ? "Hide" : "Show" }} image</button>
+    <img v-if="show" alt="Vue logo" src="./assets/logo.png">
+    <h3>{{ numberA }}</h3>
+    <h3>{{ numberB }}</h3>
+    <h3>{{ total }}</h3>
+    <button @click="test">Click me</button>
+    <button @click="calculate(10)">Calculate</button>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  mounted() {
+    alert('Page loaded')
+  },
+  data() {
+    return {
+      numberA: 1,
+      numberB: 2,
+      show: true,
+      anotherTotal: null
+    }
+  },
+  computed: {
+    total() {
+      return this.numberA + this.numberB;
+    }
+  },
+  methods: {
+    test() {
+      this.numberA = 123;
+      this.numberB = 456;
+    },
+    toggleImage() {
+      this.show = !this.show;
+      console.log(this.show)
+    },
+    calculate(c) {
+      this.anotherTotal = this.numberA + this.numberB + c;
+    }
   }
 }
 </script>
